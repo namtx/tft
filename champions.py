@@ -16,9 +16,12 @@ class ChampionsSpider(scrapy.Spider):
         self.logger.info(self.name)
         champions = response.css('.guide-champion-list .guide-champion-list__item').xpath('@data-keyword').getall()
         matched = process.extractOne(self.name, champions)
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.headless = True
+
 
         if matched:
-            driver = webdriver.Edge()
+            driver = webdriver.Chrome(options = chrome_options)
             driver.get(f'https://lolchess.gg/champions/set9.5/{matched[0]}')
             champion_name = driver.find_element(By.CSS_SELECTOR, '.guide-champion-detail__name').text
             self.logger.info(champion_name)
