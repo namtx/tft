@@ -8,7 +8,7 @@ You don't need to enter the champion name correctly, this tool will try to fuzzy
 #### Show me!
 
 ```bash
-scrapy runspider -a name=nasus  champions.py
+./run.sh nasus
 ```
 
 ![nasus](./nasus.png)
